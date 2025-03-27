@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "com.combat_rebalanced.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "client": [
+  ],
+  "mixins": [
+    "MaceMixin",
+    "TridentMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
