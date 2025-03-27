@@ -1,33 +1,31 @@
 modLoader = "javafml"
 loaderVersion = "[4,)"
 #issueTrackerURL = ""
-license = "Insert License Here"
+license = "MIT"
 
 [[mods]]
-modId = "combat_rebalanced"
+modId = "combat_rebalance"
 version = "${version}"
 displayName = "Combat Rebalanced"
 authors = "Me!"
-description = '''
-This is an example description! Tell everyone what your mod is about!
-'''
+description = "A Mod Tweaking and Rebalancing Minecraft's Combat!"
 #logoFile = ""
 
-[[dependencies.combat_rebalanced]]
+[[dependencies.combat_rebalance]]
 modId = "neoforge"
 type = "required"
 versionRange = "[21.1,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.combat_rebalanced]]
+[[dependencies.combat_rebalance]]
 modId = "minecraft"
 type = "required"
 versionRange = "[1.21.1,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.combat_rebalanced]]
+[[dependencies.combat_rebalance]]
 modId = "architectury"
 type = "required"
 versionRange = "[13.0.8,)"
@@ -35,4 +33,4 @@ ordering = "AFTER"
 side = "BOTH"
 
 [[mixins]]
-config = "combat_rebalanced.mixins.json"
+config = "combat_rebalance.mixins.json"

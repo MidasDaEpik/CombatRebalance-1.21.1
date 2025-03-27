@@ -1,10 +1,10 @@
-package com.combat_rebalanced.fabric;
+package com.combat_rebalance.fabric;
 
 import net.fabricmc.api.ModInitializer;
 
-import com.combat_rebalanced.CombatRebalanced;
+import com.combat_rebalance.CombatRebalance;
 
-public final class CombatRebalancedFabric implements ModInitializer {
+public final class CombatRebalanceFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         // This code runs as soon as Minecraft is in a mod-load-ready state.
@@ -12,6 +12,6 @@ public final class CombatRebalancedFabric implements ModInitializer {
         // Proceed with mild caution.
 
         // Run our common setup.
-        CombatRebalanced.init();
+        CombatRebalance.init();
     }
 }

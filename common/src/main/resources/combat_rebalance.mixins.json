@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "com.combat_rebalanced.mixin",
+  "package": "com.combat_rebalance.mixin",
   "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8",
   "client": [

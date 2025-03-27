@@ -1,6 +1,6 @@
-package com.combat_rebalanced.mixin;
+package com.combat_rebalance.mixin;
 
-import com.combat_rebalanced.CombatRebalanced;
+import com.combat_rebalance.CombatRebalance;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -27,7 +27,7 @@ public class MaceMixin {
                         new AttributeModifier(BASE_ATTACK_SPEED_ID, -3.4f, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.FALL_DAMAGE_MULTIPLIER,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(CombatRebalanced.MOD_ID, "fall_damage_multiplier"),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(CombatRebalance.MOD_ID, "fall_damage_multiplier"),
                                 0.75f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                         EquipmentSlotGroup.MAINHAND)
                 .build();

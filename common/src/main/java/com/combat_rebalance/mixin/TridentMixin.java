@@ -1,6 +1,6 @@
-package com.combat_rebalanced.mixin;
+package com.combat_rebalance.mixin;
 
-import com.combat_rebalanced.CombatRebalanced;
+import com.combat_rebalance.CombatRebalance;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -27,11 +27,11 @@ public class TridentMixin {
                         new AttributeModifier(BASE_ATTACK_SPEED_ID, -2.9f, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ENTITY_INTERACTION_RANGE,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(CombatRebalanced.MOD_ID, "entity_interaction_range"),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(CombatRebalance.MOD_ID, "entity_interaction_range"),
                                 1.5f, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ATTACK_KNOCKBACK,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(CombatRebalanced.MOD_ID, "attack_knockback"),
+                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(CombatRebalance.MOD_ID, "attack_knockback"),
                                 1.0f, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .build();

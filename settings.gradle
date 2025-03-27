@@ -7,7 +7,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'combat_rebalanced'
+rootProject.name = 'combat_rebalance'
 
 include 'common'
 include 'fabric'

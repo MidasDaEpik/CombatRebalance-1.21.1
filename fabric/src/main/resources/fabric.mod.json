@@ -3,27 +3,27 @@
   "id": "combat_rebalanced",
   "version": "${version}",
   "name": "Combat Rebalanced",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "A Mod Tweaking and Rebalancing Minecraft's Combat!",
   "authors": [
-    "Me!"
+    "MidasDaEpik"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
   "license": "CC0-1.0",
-  "icon": "assets/combat_rebalanced/icon.png",
+  "icon": "assets/combat_rebalance/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.combat_rebalanced.fabric.CombatRebalancedFabric"
+      "com.combat_rebalance.fabric.CombatRebalanceFabric"
     ],
     "client": [
-      "com.combat_rebalanced.fabric.client.CombatRebalancedFabricClient"
+      "com.combat_rebalance.fabric.client.CombatRebalanceFabricClient"
     ]
   },
   "mixins": [
-    "combat_rebalanced.mixins.json"
+    "combat_rebalance.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.16.10",
