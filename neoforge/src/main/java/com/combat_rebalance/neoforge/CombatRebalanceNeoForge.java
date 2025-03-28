@@ -1,8 +1,7 @@
 package com.combat_rebalance.neoforge;
 
-import net.neoforged.fml.common.Mod;
-
 import com.combat_rebalance.CombatRebalance;
+import net.neoforged.fml.common.Mod;
 
 @Mod(CombatRebalance.MOD_ID)
 public final class CombatRebalanceNeoForge {

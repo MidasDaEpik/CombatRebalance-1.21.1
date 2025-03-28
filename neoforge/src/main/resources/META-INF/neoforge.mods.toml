@@ -32,5 +32,12 @@ versionRange = "[13.0.8,)"
 ordering = "AFTER"
 side = "BOTH"
 
+[[dependencies.combat_rebalance]]
+modId = "yet_another_config_lib_v3"
+type = "required"
+versionRange = "[3.6.1+1.21-neoforge,)"
+ordering = "AFTER"
+side = "CLIENT"
+
 [[mixins]]
 config = "combat_rebalance.mixins.json"

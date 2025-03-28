@@ -1,6 +1,7 @@
 package com.combat_rebalance.mixin;
 
 import com.combat_rebalance.CombatRebalance;
+import com.combat_rebalance.config.CRConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -19,22 +20,28 @@ import static net.minecraft.world.item.Item.BASE_ATTACK_SPEED_ID;
 public class TridentMixin {
     @Inject(method = "createAttributes", at = @At("HEAD"), cancellable = true)
     private static void createAttributes(CallbackInfoReturnable<ItemAttributeModifiers> pReturn) {
-        ItemAttributeModifiers pModifiers = ItemAttributeModifiers.builder()
-                .add(Attributes.ATTACK_DAMAGE,
-                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID, 9.0f, AttributeModifier.Operation.ADD_VALUE),
-                        EquipmentSlotGroup.MAINHAND)
-                .add(Attributes.ATTACK_SPEED,
-                        new AttributeModifier(BASE_ATTACK_SPEED_ID, -2.9f, AttributeModifier.Operation.ADD_VALUE),
-                        EquipmentSlotGroup.MAINHAND)
-                .add(Attributes.ENTITY_INTERACTION_RANGE,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(CombatRebalance.MOD_ID, "entity_interaction_range"),
-                                1.5f, AttributeModifier.Operation.ADD_VALUE),
-                        EquipmentSlotGroup.MAINHAND)
-                .add(Attributes.ATTACK_KNOCKBACK,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(CombatRebalance.MOD_ID, "attack_knockback"),
-                                1.0f, AttributeModifier.Operation.ADD_VALUE),
-                        EquipmentSlotGroup.MAINHAND)
-                .build();
-        pReturn.setReturnValue(pModifiers);
+        CRConfig.HANDLER.load();
+        CRConfig pConfig = CRConfig.HANDLER.instance();
+        if (pConfig.ItemTridentChangesEnabled) {
+            ItemAttributeModifiers pModifiers = ItemAttributeModifiers.builder()
+                    .add(Attributes.ATTACK_DAMAGE,
+                            new AttributeModifier(BASE_ATTACK_DAMAGE_ID,
+                                    pConfig.ItemTridentAttackDamage - 1, AttributeModifier.Operation.ADD_VALUE),
+                            EquipmentSlotGroup.MAINHAND)
+                    .add(Attributes.ATTACK_SPEED,
+                            new AttributeModifier(BASE_ATTACK_SPEED_ID,
+                                    pConfig.ItemTridentAttackSpeed - 4, AttributeModifier.Operation.ADD_VALUE),
+                            EquipmentSlotGroup.MAINHAND)
+                    .add(Attributes.ENTITY_INTERACTION_RANGE,
+                            new AttributeModifier(ResourceLocation.fromNamespaceAndPath(CombatRebalance.MOD_ID, "entity_interaction_range"),
+                                    pConfig.ItemTridentEntityInteractionRange, AttributeModifier.Operation.ADD_VALUE),
+                            EquipmentSlotGroup.MAINHAND)
+                    .add(Attributes.ATTACK_KNOCKBACK,
+                            new AttributeModifier(ResourceLocation.fromNamespaceAndPath(CombatRebalance.MOD_ID, "attack_knockback"),
+                                    pConfig.ItemTridentAttackKnockback, AttributeModifier.Operation.ADD_VALUE),
+                            EquipmentSlotGroup.MAINHAND)
+                    .build();
+            pReturn.setReturnValue(pModifiers);
+        }
     }
 }

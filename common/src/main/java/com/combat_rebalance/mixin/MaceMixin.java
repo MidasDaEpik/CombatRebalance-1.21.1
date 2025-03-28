@@ -1,6 +1,7 @@
 package com.combat_rebalance.mixin;
 
 import com.combat_rebalance.CombatRebalance;
+import com.combat_rebalance.config.CRConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -19,18 +20,24 @@ import static net.minecraft.world.item.Item.BASE_ATTACK_SPEED_ID;
 public class MaceMixin {
     @Inject(method = "createAttributes", at = @At("HEAD"), cancellable = true)
     private static void createAttributes(CallbackInfoReturnable<ItemAttributeModifiers> pReturn) {
-        ItemAttributeModifiers pModifiers = ItemAttributeModifiers.builder()
-                .add(Attributes.ATTACK_DAMAGE,
-                        new AttributeModifier(BASE_ATTACK_DAMAGE_ID, 5.0f, AttributeModifier.Operation.ADD_VALUE),
-                        EquipmentSlotGroup.MAINHAND)
-                .add(Attributes.ATTACK_SPEED,
-                        new AttributeModifier(BASE_ATTACK_SPEED_ID, -3.4f, AttributeModifier.Operation.ADD_VALUE),
-                        EquipmentSlotGroup.MAINHAND)
-                .add(Attributes.FALL_DAMAGE_MULTIPLIER,
-                        new AttributeModifier(ResourceLocation.fromNamespaceAndPath(CombatRebalance.MOD_ID, "fall_damage_multiplier"),
-                                0.75f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
-                        EquipmentSlotGroup.MAINHAND)
-                .build();
-        pReturn.setReturnValue(pModifiers);
+        CRConfig.HANDLER.load();
+        CRConfig pConfig = CRConfig.HANDLER.instance();
+        if (pConfig.ItemMaceChangesEnabled) {
+            ItemAttributeModifiers pModifiers = ItemAttributeModifiers.builder()
+                    .add(Attributes.ATTACK_DAMAGE,
+                            new AttributeModifier(BASE_ATTACK_DAMAGE_ID,
+                                    pConfig.ItemMaceAttackDamage - 1, AttributeModifier.Operation.ADD_VALUE),
+                            EquipmentSlotGroup.MAINHAND)
+                    .add(Attributes.ATTACK_SPEED,
+                            new AttributeModifier(BASE_ATTACK_SPEED_ID,
+                                    pConfig.ItemMaceAttackSpeed - 4, AttributeModifier.Operation.ADD_VALUE),
+                            EquipmentSlotGroup.MAINHAND)
+                    .add(Attributes.FALL_DAMAGE_MULTIPLIER,
+                            new AttributeModifier(ResourceLocation.fromNamespaceAndPath(CombatRebalance.MOD_ID, "fall_damage_multiplier"),
+                                    pConfig.ItemMaceFallDamageMultiplier, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+                            EquipmentSlotGroup.MAINHAND)
+                    .build();
+            pReturn.setReturnValue(pModifiers);
+        }
     }
 }
