@@ -22,23 +22,23 @@ public class TridentMixin {
     private static void createAttributes(CallbackInfoReturnable<ItemAttributeModifiers> pReturn) {
         CRConfig.HANDLER.load();
         CRConfig pConfig = CRConfig.HANDLER.instance();
-        if (pConfig.ItemTridentChangesEnabled) {
+        if (pConfig.ItemTridentAttributeChangesEnabled) {
             ItemAttributeModifiers pModifiers = ItemAttributeModifiers.builder()
                     .add(Attributes.ATTACK_DAMAGE,
                             new AttributeModifier(BASE_ATTACK_DAMAGE_ID,
-                                    pConfig.ItemTridentAttackDamage - 1, AttributeModifier.Operation.ADD_VALUE),
+                                    pConfig.ItemTridentAttackDamageAttribute - 1, AttributeModifier.Operation.ADD_VALUE),
                             EquipmentSlotGroup.MAINHAND)
                     .add(Attributes.ATTACK_SPEED,
                             new AttributeModifier(BASE_ATTACK_SPEED_ID,
-                                    pConfig.ItemTridentAttackSpeed - 4, AttributeModifier.Operation.ADD_VALUE),
+                                    pConfig.ItemTridentAttackSpeedAttribute - 4, AttributeModifier.Operation.ADD_VALUE),
                             EquipmentSlotGroup.MAINHAND)
                     .add(Attributes.ENTITY_INTERACTION_RANGE,
                             new AttributeModifier(ResourceLocation.fromNamespaceAndPath(CombatRebalance.MOD_ID, "entity_interaction_range"),
-                                    pConfig.ItemTridentEntityInteractionRange, AttributeModifier.Operation.ADD_VALUE),
+                                    pConfig.ItemTridentEntityInteractionRangeAttribute, AttributeModifier.Operation.ADD_VALUE),
                             EquipmentSlotGroup.MAINHAND)
                     .add(Attributes.ATTACK_KNOCKBACK,
                             new AttributeModifier(ResourceLocation.fromNamespaceAndPath(CombatRebalance.MOD_ID, "attack_knockback"),
-                                    pConfig.ItemTridentAttackKnockback, AttributeModifier.Operation.ADD_VALUE),
+                                    pConfig.ItemTridentAttackKnockbackAttribute, AttributeModifier.Operation.ADD_VALUE),
                             EquipmentSlotGroup.MAINHAND)
                     .build();
             pReturn.setReturnValue(pModifiers);

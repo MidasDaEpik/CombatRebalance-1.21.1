@@ -20,30 +20,36 @@ public class CRConfig {
 
     @SerialEntry(comment = "Rebalances the trident giving it extra damage, reach and knockback.\n" +
             "May conflict with other mods that modify the trident's attributes, disable if so.")
-    public boolean ItemTridentChangesEnabled = true;
+    public boolean ItemTridentAttributeChangesEnabled = true;
 
     @SerialEntry(comment = "Vanilla Trident Attributes: 9 Attack Damage, 1.1 Attack Speed")
-    public float ItemTridentAttackDamage = 10f;
+    public float ItemTridentAttackDamageAttribute = 10f;
 
     @SerialEntry
-    public float ItemTridentAttackSpeed = 1.1f;
+    public float ItemTridentAttackSpeedAttribute = 1.1f;
 
     @SerialEntry
-    public float ItemTridentEntityInteractionRange = 1.5f;
+    public float ItemTridentEntityInteractionRangeAttribute = 1.5f;
 
     @SerialEntry
-    public float ItemTridentAttackKnockback = 1.0f;
+    public float ItemTridentAttackKnockbackAttribute = 1.0f;
 
-    @SerialEntry(comment = "\n\n\nRebalances the mace giving it increased fall damage, giving it risk and reward\n" +
-            "May conflict with other mods that modify the mace's attributes, disable if so.")
-    public boolean ItemMaceChangesEnabled = true;
+    @SerialEntry(comment = "Hides the items in other hand when the player is using Riptide")
+    public boolean ItemTridentHideAltHandWhenRiptideEnabled = true;
+
+    @SerialEntry(comment = "\n\n\nRebalances the Mace giving it increased fall damage, giving it risk and reward\n" +
+            "May conflict with other mods that modify the Mace's attributes, disable if so.")
+    public boolean ItemMaceAttributeChangesEnabled = true;
 
     @SerialEntry(comment = "Vanilla Mace Attributes: 6 Attack Damage, 0.6 Attack Speed")
-    public float ItemMaceAttackDamage = 6f;
+    public float ItemMaceAttackDamageAttribute = 6f;
 
     @SerialEntry
-    public float ItemMaceAttackSpeed = 0.6f;
+    public float ItemMaceAttackSpeedAttribute = 0.6f;
 
     @SerialEntry
-    public float ItemMaceFallDamageMultiplier = 0.75f;
+    public float ItemMaceFallDamageMultiplierAttribute = 1.0f;
+
+    @SerialEntry(comment = "Multiplier to the Knockback dealt with the Mace's Smash Attack")
+    public float ItemMaceSmashKnockbackMultiplier = 0.25f;
 }
