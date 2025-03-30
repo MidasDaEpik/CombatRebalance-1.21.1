@@ -19,7 +19,7 @@ public class CRConfig {
             .build();
 
     @SerialEntry(comment = "Rebalances the trident giving it extra damage, reach and knockback.\n" +
-            "May conflict with other mods that modify the trident's attributes, disable if so.")
+            "May conflict with mods that modify the trident's attributes.")
     public boolean ItemTridentAttributeChangesEnabled = true;
 
     @SerialEntry(comment = "Vanilla Trident Attributes: 9 Attack Damage, 1.1 Attack Speed")
@@ -34,11 +34,11 @@ public class CRConfig {
     @SerialEntry
     public float ItemTridentAttackKnockbackAttribute = 1.0f;
 
-    @SerialEntry(comment = "Hides the items in other hand when the player is using Riptide")
+    @SerialEntry(comment = "Hides items in the other hand when using Riptide.")
     public boolean ItemTridentHideAltHandWhenRiptideEnabled = true;
 
-    @SerialEntry(comment = "\n\n\nRebalances the Mace giving it increased fall damage, giving it risk and reward\n" +
-            "May conflict with other mods that modify the Mace's attributes, disable if so.")
+    @SerialEntry(comment = "\n\n\nRebalances the Mace giving it increased fall damage, giving it risk and reward.\n" +
+            "May conflict with mods that modify the Mace's attributes.")
     public boolean ItemMaceAttributeChangesEnabled = true;
 
     @SerialEntry(comment = "Vanilla Mace Attributes: 6 Attack Damage, 0.6 Attack Speed")
@@ -50,6 +50,34 @@ public class CRConfig {
     @SerialEntry
     public float ItemMaceFallDamageMultiplierAttribute = 1.0f;
 
+    @SerialEntry(comment = "Changes to the Mace's Smash Attack Damage Calculation.\n" +
+            "May conflict with mods that modify the Mace's damage calculation.")
+    public boolean ItemMaceSmashCalculationChangesEnabled = true;
+
+    @SerialEntry(comment = "Damage Calculation: Fall Distance Under Cutoff 1 * Multiplier 1 + Fall Distance Between Cutoff 1 and 2 * Multiplier 2 + Fall Distance Above Cutoff 2 * Multiplier 3")
+    public float ItemMaceSmashCutoff1 = 8.0f;
+
+    @SerialEntry
+    public float ItemMaceSmashCutoff2 = 16.0f;
+
+    @SerialEntry
+    public float ItemMaceSmashMultiplier1 = 2.0f;
+
+    @SerialEntry
+    public float ItemMaceSmashMultiplier2 = 1.0f;
+
+    @SerialEntry
+    public float ItemMaceSmashMultiplier3 = 0.5f;
+
+    @SerialEntry(comment = "Caps the Mace's Smash Attack based on the Target's Health (Target Health * Smash Damage Cap)")
+    public boolean ItemMaceSmashDamageCapEnabled = true;
+
+    @SerialEntry
+    public float ItemMaceSmashDamageCap = 1.5f;
+
     @SerialEntry(comment = "Multiplier to the Knockback dealt with the Mace's Smash Attack")
-    public float ItemMaceSmashKnockbackMultiplier = 0.25f;
+    public float ItemMaceSmashXZKnockbackMultiplier = 1.0f;
+
+    @SerialEntry
+    public float ItemMaceSmashYKnockbackMultiplier = 1.0f;
 }
