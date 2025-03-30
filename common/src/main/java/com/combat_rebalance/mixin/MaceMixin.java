@@ -56,10 +56,10 @@ public class MaceMixin {
         CRConfig pConfig = CRConfig.HANDLER.instance();
         if (pConfig.ItemMaceSmashCalculationChangesEnabled) {
             if (pDamageSource.getDirectEntity() instanceof LivingEntity pAttacker && canSmashAttack(pAttacker)) {
-                float pFallDistance = pAttacker.fallDistance - 1;
+                float pFallDistance = pAttacker.fallDistance;
                 float pSmashDamage = 0;
-                float pCutoff1 = pConfig.ItemMaceSmashCutoff1;
-                float pCutoff2 = pConfig.ItemMaceSmashCutoff2 - pConfig.ItemMaceSmashCutoff1;
+                float pCutoff1 = pConfig.ItemMaceSmashParameter1;
+                float pCutoff2 = pConfig.ItemMaceSmashParameter2 - pCutoff1;
                 float pMultiplier1 = pConfig.ItemMaceSmashMultiplier1;
                 float pMultiplier2 = pConfig.ItemMaceSmashMultiplier2;
                 float pMultiplier3 = pConfig.ItemMaceSmashMultiplier3;

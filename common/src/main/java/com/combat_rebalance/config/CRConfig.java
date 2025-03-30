@@ -18,66 +18,75 @@ public class CRConfig {
                     .build())
             .build();
 
-    @SerialEntry(comment = "Rebalances the trident giving it extra damage, reach and knockback.\n" +
+    @SerialEntry(value = "Trident Attribute Changes Enabled?",
+            comment = "Rebalances the trident giving it extra damage, reach and knockback.\n" +
             "May conflict with mods that modify the trident's attributes.")
     public boolean ItemTridentAttributeChangesEnabled = true;
 
-    @SerialEntry(comment = "Vanilla Trident Attributes: 9 Attack Damage, 1.1 Attack Speed")
+    @SerialEntry(value = "Trident Attack Damage Attribute",
+            comment = "Vanilla Trident Attributes: 9 Attack Damage, 1.1 Attack Speed")
     public float ItemTridentAttackDamageAttribute = 10f;
 
-    @SerialEntry
+    @SerialEntry(value = "Trident Attack Speed Attribute")
     public float ItemTridentAttackSpeedAttribute = 1.1f;
 
-    @SerialEntry
+    @SerialEntry(value = "Trident Reach Attribute")
     public float ItemTridentEntityInteractionRangeAttribute = 1.5f;
 
-    @SerialEntry
+    @SerialEntry(value = "Trident Knockback Attribute")
     public float ItemTridentAttackKnockbackAttribute = 1.0f;
 
-    @SerialEntry(comment = "Hides items in the other hand when using Riptide.")
+    @SerialEntry(value = "Trident Hide Alt Hand When Riptide Enabled?",
+            comment = "\nHides items in the other hand when using Riptide.")
     public boolean ItemTridentHideAltHandWhenRiptideEnabled = true;
 
-    @SerialEntry(comment = "\n\n\nRebalances the Mace giving it increased fall damage, giving it risk and reward.\n" +
+    @SerialEntry(value = "Mace Attribute Changes Enabled?",
+            comment = "\n\n\nRebalances the Mace giving it increased fall damage, giving it risk and reward.\n" +
             "May conflict with mods that modify the Mace's attributes.")
     public boolean ItemMaceAttributeChangesEnabled = true;
 
-    @SerialEntry(comment = "Vanilla Mace Attributes: 6 Attack Damage, 0.6 Attack Speed")
+    @SerialEntry(value = "Mace Attack Damage Attribute",
+            comment = "Vanilla Mace Attributes: 6 Attack Damage, 0.6 Attack Speed")
     public float ItemMaceAttackDamageAttribute = 6f;
 
-    @SerialEntry
+    @SerialEntry(value = "Mace Attack Speed Attribute")
     public float ItemMaceAttackSpeedAttribute = 0.6f;
 
-    @SerialEntry
+    @SerialEntry(value = "Mace Fall Damage Multiplier Attribute")
     public float ItemMaceFallDamageMultiplierAttribute = 1.0f;
 
-    @SerialEntry(comment = "Changes to the Mace's Smash Attack Damage Calculation.\n" +
+    @SerialEntry(value = "Mace Smash Calculation Changes Enabled?",
+            comment = "\nChanges to the Mace's Smash Attack Damage Calculation.\n" +
             "May conflict with mods that modify the Mace's damage calculation.")
     public boolean ItemMaceSmashCalculationChangesEnabled = true;
 
-    @SerialEntry(comment = "Damage Calculation: Fall Distance Under Cutoff 1 * Multiplier 1 + Fall Distance Between Cutoff 1 and 2 * Multiplier 2 + Fall Distance Above Cutoff 2 * Multiplier 3")
-    public float ItemMaceSmashCutoff1 = 8.0f;
+    @SerialEntry(value = "Mace Smash Parameter 1",
+            comment = "Damage Calculation: Fall Distance Under Parameter 1 * Multiplier 1 + Fall Distance Between Parameter 1 and 2 * Multiplier 2 + Fall Distance Above Parameter 2 * Multiplier 3")
+    public float ItemMaceSmashParameter1 = 8.0f;
 
-    @SerialEntry
-    public float ItemMaceSmashCutoff2 = 16.0f;
+    @SerialEntry(value = "Mace Smash Parameter 2")
+    public float ItemMaceSmashParameter2 = 16.0f;
 
-    @SerialEntry
+    @SerialEntry(value = "Mace Smash Multiplier 1")
     public float ItemMaceSmashMultiplier1 = 2.0f;
 
-    @SerialEntry
+    @SerialEntry(value = "Mace Smash Multiplier 2")
     public float ItemMaceSmashMultiplier2 = 1.0f;
 
-    @SerialEntry
+    @SerialEntry(value = "Mace Smash Multiplier 3")
     public float ItemMaceSmashMultiplier3 = 0.5f;
 
-    @SerialEntry(comment = "Caps the Mace's Smash Attack based on the Target's Health (Target Health * Smash Damage Cap)")
+    @SerialEntry(value = "Mace Smash Damage Cap Enabled?",
+            comment = "\nCaps the Mace's Smash Attack based on the Target's Health (Target Health * Smash Damage Cap)")
     public boolean ItemMaceSmashDamageCapEnabled = true;
 
-    @SerialEntry
+    @SerialEntry(value = "Mace Smash Damage Cap Multiplier")
     public float ItemMaceSmashDamageCap = 1.5f;
 
-    @SerialEntry(comment = "Multiplier to the Knockback dealt with the Mace's Smash Attack")
+    @SerialEntry(value = "Mace Smash Knockback XZ Multiplier",
+            comment = "\nMultiplier to the Knockback dealt with the Mace's Smash Attack")
     public float ItemMaceSmashXZKnockbackMultiplier = 1.0f;
 
-    @SerialEntry
+    @SerialEntry(value = "Mace Smash Knockback Y Multiplier")
     public float ItemMaceSmashYKnockbackMultiplier = 1.0f;
 }
