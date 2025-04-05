@@ -18,75 +18,109 @@ public class CRConfig {
                     .build())
             .build();
 
+    @SerialEntry(value = "Hunger Changes Enabled?",
+            comment = "\n\n\nMake healing more steady in combat rather than in bursts with food, \n" +
+                    "making high saturation foods not as overpowered as they are. \n" +
+                    "May conflict with mods that also rebalance the hunger system")
+    public boolean HungerChangesEnabled = true;
+
+    @SerialEntry(value = "[Hunger] Non Stacking Saturation Enabled?",
+            comment = "\nEating multiple foods in succession does not stack saturation.")
+    public boolean HungerNonStackingSaturationEnabled = true;
+
+    @SerialEntry(value = "[Hunger] Saturation Healing Enabled?",
+            comment = "\nSetting to True enables saturation being consumed to heal the player.")
+    public boolean HungerSaturationHealingEnabled = false;
+
+    @SerialEntry(value = "[Hunger] Saturation Healing Cooldown",
+            comment = "\nCooldown per tick of Healing from Saturation, useless unless Saturation Healing is enabled. (In ticks, 20 ticks = 1 second)" +
+                    "\nVanilla Value: 10 ticks / 0.5 seconds")
+    public int HungerSaturationHealingCooldown = 10;
+
+    @SerialEntry(value = "[Hunger] Heal Until Hunger",
+            comment = "\nUntil what amount of Hunger will be consumed to heal the player. (Full Bar is 20 Hunger, Sprinting is disabled at 6 Hunger)" +
+                    "\nVanilla Value: 17 hunger / 8.5 points on hunger bar")
+    public int HungerHealUntilHunger = 8;
+
+    @SerialEntry(value = "[Hunger] Hunger Healing Cooldown",
+            comment = "\nCooldown per tick of Healing from Hunger. (In ticks, 20 ticks = 1 second)" +
+                    "\nVanilla Value: 80 ticks / 4 seconds")
+    public int HungerHungerHealingCooldown = 40;
+
+    //Note: Add Hunger Effect to This
+    @SerialEntry(value = "[Hunger] Disable Non-Healing Hunger Loss?",
+            comment = "\nSetting to True disables all hunger loss except for healing.")
+    public boolean HungerDisableNonHealingHungerLossEnabled = false;
+
     @SerialEntry(value = "Trident Attribute Changes Enabled?",
             comment = "Rebalances the trident giving it extra damage, reach and knockback.\n" +
             "May conflict with mods that modify the trident's attributes.")
-    public boolean ItemTridentAttributeChangesEnabled = true;
+    public boolean TridentAttributeChangesEnabled = true;
 
-    @SerialEntry(value = "Trident Attack Damage Attribute",
+    @SerialEntry(value = "[Trident Attribute] Attack Damage",
             comment = "Vanilla Trident Attributes: 9 Attack Damage, 1.1 Attack Speed")
-    public float ItemTridentAttackDamageAttribute = 10f;
+    public float TridentAttackDamageAttribute = 10f;
 
-    @SerialEntry(value = "Trident Attack Speed Attribute")
-    public float ItemTridentAttackSpeedAttribute = 1.1f;
+    @SerialEntry(value = "[Trident Attribute] Attack Speed")
+    public float TridentAttackSpeedAttribute = 1.1f;
 
-    @SerialEntry(value = "Trident Reach Attribute")
-    public float ItemTridentEntityInteractionRangeAttribute = 1.5f;
+    @SerialEntry(value = "[Trident Attribute] Reach")
+    public float TridentEntityInteractionRangeAttribute = 1.5f;
 
-    @SerialEntry(value = "Trident Knockback Attribute")
-    public float ItemTridentAttackKnockbackAttribute = 1.0f;
+    @SerialEntry(value = "[Trident Attribute] Knockback")
+    public float TridentAttackKnockbackAttribute = 1.0f;
 
     @SerialEntry(value = "Trident Hide Alt Hand When Riptide Enabled?",
             comment = "\nHides items in the other hand when using Riptide.")
-    public boolean ItemTridentHideAltHandWhenRiptideEnabled = true;
+    public boolean TridentHideAltHandWhenRiptideEnabled = true;
 
     @SerialEntry(value = "Mace Attribute Changes Enabled?",
             comment = "\n\n\nRebalances the Mace giving it increased fall damage, giving it risk and reward.\n" +
             "May conflict with mods that modify the Mace's attributes.")
-    public boolean ItemMaceAttributeChangesEnabled = true;
+    public boolean MaceAttributeChangesEnabled = true;
 
-    @SerialEntry(value = "Mace Attack Damage Attribute",
+    @SerialEntry(value = "[Mace Attribute] Attack",
             comment = "Vanilla Mace Attributes: 6 Attack Damage, 0.6 Attack Speed")
-    public float ItemMaceAttackDamageAttribute = 6f;
+    public float MaceAttackDamageAttribute = 6f;
 
-    @SerialEntry(value = "Mace Attack Speed Attribute")
-    public float ItemMaceAttackSpeedAttribute = 0.6f;
+    @SerialEntry(value = "[Mace Attribute] Attack Speed")
+    public float MaceAttackSpeedAttribute = 0.6f;
 
-    @SerialEntry(value = "Mace Fall Damage Multiplier Attribute")
-    public float ItemMaceFallDamageMultiplierAttribute = 1.0f;
+    @SerialEntry(value = "[Mace Attribute] Fall Damage Multiplier")
+    public float MaceFallDamageMultiplierAttribute = 1.0f;
 
     @SerialEntry(value = "Mace Smash Calculation Changes Enabled?",
             comment = "\nChanges to the Mace's Smash Attack Damage Calculation.\n" +
             "May conflict with mods that modify the Mace's damage calculation.")
-    public boolean ItemMaceSmashCalculationChangesEnabled = true;
+    public boolean MaceSmashCalculationChangesEnabled = true;
 
-    @SerialEntry(value = "Mace Smash Parameter 1",
+    @SerialEntry(value = "[Mace Smash] Parameter 1",
             comment = "Damage Calculation: Fall Distance Under Parameter 1 * Multiplier 1 + Fall Distance Between Parameter 1 and 2 * Multiplier 2 + Fall Distance Above Parameter 2 * Multiplier 3")
-    public float ItemMaceSmashParameter1 = 8.0f;
+    public float MaceSmashParameter1 = 8.0f;
 
-    @SerialEntry(value = "Mace Smash Parameter 2")
-    public float ItemMaceSmashParameter2 = 16.0f;
+    @SerialEntry(value = "[Mace Smash] Parameter 2")
+    public float MaceSmashParameter2 = 16.0f;
 
-    @SerialEntry(value = "Mace Smash Multiplier 1")
-    public float ItemMaceSmashMultiplier1 = 2.0f;
+    @SerialEntry(value = "[Mace Smash] Multiplier 1")
+    public float MaceSmashMultiplier1 = 2.0f;
 
-    @SerialEntry(value = "Mace Smash Multiplier 2")
-    public float ItemMaceSmashMultiplier2 = 1.0f;
+    @SerialEntry(value = "[Mace Smash] Multiplier 2")
+    public float MaceSmashMultiplier2 = 1.0f;
 
-    @SerialEntry(value = "Mace Smash Multiplier 3")
-    public float ItemMaceSmashMultiplier3 = 0.5f;
+    @SerialEntry(value = "[Mace Smash] Multiplier 3")
+    public float MaceSmashMultiplier3 = 0.5f;
 
     @SerialEntry(value = "Mace Smash Damage Cap Enabled?",
             comment = "\nCaps the Mace's Smash Attack based on the Target's Health (Target Health * Smash Damage Cap)")
-    public boolean ItemMaceSmashDamageCapEnabled = true;
+    public boolean MaceSmashDamageCapEnabled = true;
 
-    @SerialEntry(value = "Mace Smash Damage Cap Multiplier")
-    public float ItemMaceSmashDamageCap = 1.5f;
+    @SerialEntry(value = "[Mace Smash Damage Cap] Multiplier")
+    public float MaceSmashDamageCap = 1.5f;
 
     @SerialEntry(value = "Mace Smash Knockback XZ Multiplier",
             comment = "\nMultiplier to the Knockback dealt with the Mace's Smash Attack")
-    public float ItemMaceSmashXZKnockbackMultiplier = 1.0f;
+    public float MaceSmashXZKnockbackMultiplier = 1.0f;
 
     @SerialEntry(value = "Mace Smash Knockback Y Multiplier")
-    public float ItemMaceSmashYKnockbackMultiplier = 1.0f;
+    public float MaceSmashYKnockbackMultiplier = 1.0f;
 }

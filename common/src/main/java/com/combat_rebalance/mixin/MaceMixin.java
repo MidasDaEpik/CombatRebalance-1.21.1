@@ -16,7 +16,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.MaceItem;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -32,19 +31,19 @@ public class MaceMixin {
     private static void createAttributes(CallbackInfoReturnable<ItemAttributeModifiers> pReturn) {
         CRConfig.HANDLER.load();
         CRConfig pConfig = CRConfig.HANDLER.instance();
-        if (pConfig.ItemMaceAttributeChangesEnabled) {
+        if (pConfig.MaceAttributeChangesEnabled) {
             ItemAttributeModifiers pModifiers = ItemAttributeModifiers.builder()
                     .add(Attributes.ATTACK_DAMAGE,
                             new AttributeModifier(BASE_ATTACK_DAMAGE_ID,
-                                    pConfig.ItemMaceAttackDamageAttribute - 1, AttributeModifier.Operation.ADD_VALUE),
+                                    pConfig.MaceAttackDamageAttribute - 1, AttributeModifier.Operation.ADD_VALUE),
                             EquipmentSlotGroup.MAINHAND)
                     .add(Attributes.ATTACK_SPEED,
                             new AttributeModifier(BASE_ATTACK_SPEED_ID,
-                                    pConfig.ItemMaceAttackSpeedAttribute - 4, AttributeModifier.Operation.ADD_VALUE),
+                                    pConfig.MaceAttackSpeedAttribute - 4, AttributeModifier.Operation.ADD_VALUE),
                             EquipmentSlotGroup.MAINHAND)
                     .add(Attributes.FALL_DAMAGE_MULTIPLIER,
                             new AttributeModifier(ResourceLocation.fromNamespaceAndPath(CombatRebalance.MOD_ID, "fall_damage_multiplier"),
-                                    pConfig.ItemMaceFallDamageMultiplierAttribute, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+                                    pConfig.MaceFallDamageMultiplierAttribute, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                             EquipmentSlotGroup.MAINHAND)
                     .build();
             pReturn.setReturnValue(pModifiers);
@@ -54,29 +53,24 @@ public class MaceMixin {
     @Inject(method = "getAttackDamageBonus", at = @At("HEAD"), cancellable = true)
     private void getAttackDamageBonus(Entity pTarget, float pDamage, DamageSource pDamageSource, CallbackInfoReturnable<Float> pReturn) {
         CRConfig pConfig = CRConfig.HANDLER.instance();
-        if (pConfig.ItemMaceSmashCalculationChangesEnabled) {
+        if (pConfig.MaceSmashCalculationChangesEnabled) {
             if (pDamageSource.getDirectEntity() instanceof LivingEntity pAttacker && canSmashAttack(pAttacker)) {
                 float pFallDistance = pAttacker.fallDistance;
                 float pSmashDamage = 0;
-                float pCutoff1 = pConfig.ItemMaceSmashParameter1;
-                float pCutoff2 = pConfig.ItemMaceSmashParameter2 - pCutoff1;
-                float pMultiplier1 = pConfig.ItemMaceSmashMultiplier1;
-                float pMultiplier2 = pConfig.ItemMaceSmashMultiplier2;
-                float pMultiplier3 = pConfig.ItemMaceSmashMultiplier3;
+                float pCutoff1 = pConfig.MaceSmashParameter1;
+                float pCutoff2 = pConfig.MaceSmashParameter2 - pCutoff1;
+                float pMultiplier1 = pConfig.MaceSmashMultiplier1;
+                float pMultiplier2 = pConfig.MaceSmashMultiplier2;
+                float pMultiplier3 = pConfig.MaceSmashMultiplier3;
 
-                if (pFallDistance > pCutoff1) {
-                    pFallDistance -= pCutoff1;
-                    pSmashDamage += pCutoff1 * pMultiplier1;
+                float pSubtract = Math.min(pFallDistance, pCutoff1);
+                pFallDistance -= pSubtract;
+                pSmashDamage += pSubtract * pMultiplier1;
 
-                    if (pFallDistance > pCutoff2) {
-                        pFallDistance -= pCutoff2;
-                        pSmashDamage += pCutoff2 * pMultiplier2 + pFallDistance * pMultiplier3;
-
-                    } else {
-                        pSmashDamage += pFallDistance * pMultiplier2;
-                    }
-                } else {
-                    pSmashDamage += pFallDistance * pMultiplier1;
+                if (pFallDistance > 0) {
+                    pSubtract = Math.min(pFallDistance, pCutoff2);
+                    pFallDistance -= pSubtract;
+                    pSmashDamage += pSubtract * pMultiplier2 + pFallDistance * pMultiplier3;
                 }
 
                 if (pAttacker.level() instanceof ServerLevel pServerLevel) {
@@ -93,9 +87,9 @@ public class MaceMixin {
     @WrapMethod(method = "getAttackDamageBonus")
     private float getAttackDamageBonus(Entity pTarget, float pDamage, DamageSource pDamageSource, Operation<Float> pOriginal) {
         CRConfig pConfig = CRConfig.HANDLER.instance();
-        if (pConfig.ItemMaceSmashDamageCapEnabled) {
+        if (pConfig.MaceSmashDamageCapEnabled) {
             if (pTarget instanceof LivingEntity pLivingEntityTarget) {
-                return Math.min(pOriginal.call(pTarget, pDamage, pDamageSource), pLivingEntityTarget.getMaxHealth() * pConfig.ItemMaceSmashDamageCap);
+                return Math.min(pOriginal.call(pTarget, pDamage, pDamageSource), pLivingEntityTarget.getMaxHealth() * pConfig.MaceSmashDamageCap);
             } else {
                 return pOriginal.call(pTarget, pDamage, pDamageSource);
             }
@@ -112,6 +106,6 @@ public class MaceMixin {
     @WrapOperation(method = "method_58409", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;push(DDD)V"))
     private static void createAttributes(LivingEntity pLivingEntity, double pX, double pY, double pZ, Operation<Void> pOriginal) {
         CRConfig pConfig = CRConfig.HANDLER.instance();
-        pOriginal.call(pLivingEntity, pX * pConfig.ItemMaceSmashXZKnockbackMultiplier, pY * pConfig.ItemMaceSmashYKnockbackMultiplier, pZ * pConfig.ItemMaceSmashXZKnockbackMultiplier);
+        pOriginal.call(pLivingEntity, pX * pConfig.MaceSmashXZKnockbackMultiplier, pY * pConfig.MaceSmashYKnockbackMultiplier, pZ * pConfig.MaceSmashXZKnockbackMultiplier);
     }
 }

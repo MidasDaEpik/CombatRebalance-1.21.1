@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ItemInHandRendererMixin {
     @Inject(method = "renderItem", at = @At("HEAD"), cancellable = true)
     private void hideAltHandWhenRiptide(LivingEntity pLivingEntity, ItemStack pItemStack, ItemDisplayContext pItemDisplayContext, boolean pLeftHanded, PoseStack pPoseStack, MultiBufferSource pBuffer, int pSeed, CallbackInfo pCallbackInfo) {
-        if (pLivingEntity instanceof AbstractClientPlayer && pLivingEntity.isAutoSpinAttack() && pItemDisplayContext.firstPerson() && CRConfig.HANDLER.instance().ItemTridentHideAltHandWhenRiptideEnabled) {
+        if (pLivingEntity instanceof AbstractClientPlayer && pLivingEntity.isAutoSpinAttack() && pItemDisplayContext.firstPerson() && CRConfig.HANDLER.instance().TridentHideAltHandWhenRiptideEnabled) {
             HumanoidArm pUsedArm = pLivingEntity.getUsedItemHand() == InteractionHand.MAIN_HAND ? pLivingEntity.getMainArm() : (pLivingEntity.getMainArm() == HumanoidArm.RIGHT ? HumanoidArm.LEFT : HumanoidArm.RIGHT);
             if (pLeftHanded != (pUsedArm == HumanoidArm.LEFT)) {
                 pCallbackInfo.cancel();
