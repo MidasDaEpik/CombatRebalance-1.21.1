@@ -8,6 +8,8 @@
   ],
   "mixins": [
     "FoodDataMixin",
+    "FoodPropertiesMixin",
+    "LivingEntityMixin",
     "MaceMixin",
     "TridentMixin"
   ],
