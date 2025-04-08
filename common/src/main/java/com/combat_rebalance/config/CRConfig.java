@@ -45,7 +45,11 @@ public class CRConfig {
     @SerialEntry(value = "[Hunger] Hunger Healing Cooldown",
             comment = "\nCooldown per tick of Healing from Hunger. (In ticks, 20 ticks = 1 second)" +
                     "\nVanilla Value: 80 ticks / 4 seconds")
-    public int HungerHungerHealingCooldown = 40;
+    public int HungerHealingCooldown = 40;
+
+    @SerialEntry(value = "[Hunger] Hunger Consumption Chance",
+            comment = "\nChance for hunger to be consumed when healing. 0.0 - 1.0 (1.0: 100%, 0.5: 50%, etc...)")
+    public float HungerConsumptionChance = 0.5f;
 
     //Note: Add Hunger Effect to This
     @SerialEntry(value = "[Hunger] Disable Non-Healing Hunger Loss?",
@@ -91,6 +95,18 @@ public class CRConfig {
 
     @SerialEntry(value = "[Food Eat Time] Maximum Value Cap")
     public int FoodEatTimeMaximumValueCap = 40;
+
+    @SerialEntry(value = "Ender Pearl Entity Despawn Time on User taking Damage",
+            comment = "\n\n\nRebalances the Ender Pearl to not be as overpowered of a teleporting item as it is." +
+                    "\n\nTime after ender pearl's user takes damage that the ender pearl despawns. (In ticks, 20 ticks = 1 second)" +
+                    "\nSetting Value to -1 Disables this feature")
+    public int EnderPearlEntityDespawnTimeOnUserDamage = 10;
+
+    @SerialEntry(value = "Ender Pearl Cooldown on Use",
+            comment = "\nCooldown after using ender pearl. (In ticks, 20 ticks = 1 second)" +
+                    "\nSetting Value to -1 Disables this feature" +
+                    "\nVanilla Value: 20 ticks / 1 second")
+    public int EnderPearlCooldownOnUse = 160;
 
     @SerialEntry(value = "Trident Attribute Changes Enabled?",
             comment = "\n\n\nRebalances the trident giving it extra damage, reach and knockback.\n" +

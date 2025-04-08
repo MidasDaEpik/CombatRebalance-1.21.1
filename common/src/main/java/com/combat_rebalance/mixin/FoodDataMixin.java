@@ -1,7 +1,6 @@
 package com.combat_rebalance.mixin;
 
 import com.combat_rebalance.config.CRConfig;
-import net.minecraft.util.Mth;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
@@ -35,8 +34,8 @@ public class FoodDataMixin {
         CRConfig pConfig = CRConfig.HANDLER.instance();
         if (pConfig.HungerChangesEnabled && pConfig.HungerNonStackingSaturationEnabled) {
 
-            this.foodLevel = Mth.clamp(pFoodLevel + this.foodLevel, 0, 20);
-            this.saturationLevel = Mth.clamp(Math.max(pSaturationLevel, this.saturationLevel), 0.0F, (float) this.foodLevel);
+            this.foodLevel = Math.clamp(pFoodLevel + this.foodLevel, 0, 20);
+            this.saturationLevel = Math.clamp(Math.max(pSaturationLevel, this.saturationLevel), 0.0F, (float) this.foodLevel);
 
             pCallbackInfo.cancel();
         }
@@ -70,9 +69,11 @@ public class FoodDataMixin {
                 }
             } else if (pNaturalRegeneration && this.foodLevel >= pConfig.HungerHealUntilHunger && pPlayer.isHurt()) {
                 ++this.tickTimer;
-                if (this.tickTimer > pConfig.HungerHungerHealingCooldown) {
+                if (this.tickTimer > pConfig.HungerHealingCooldown) {
                     pPlayer.heal(1.0F);
-                    this.foodLevel -= 1;
+                    if (Math.random() <= pConfig.HungerConsumptionChance) {
+                        this.foodLevel -= 1;
+                    }
                     if (this.saturationLevel > this.foodLevel) {
                         this.saturationLevel = this.foodLevel;
                     }

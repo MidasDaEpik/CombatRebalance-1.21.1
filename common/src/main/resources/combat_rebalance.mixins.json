@@ -7,10 +7,12 @@
     "ItemInHandRendererMixin"
   ],
   "mixins": [
+    "EnderpearlItemMixin",
     "FoodDataMixin",
     "FoodPropertiesMixin",
     "LivingEntityMixin",
     "MaceMixin",
+    "ThrownEnderpearlMixin",
     "TridentMixin"
   ],
   "injectors": {
